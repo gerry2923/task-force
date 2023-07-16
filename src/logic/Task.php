@@ -52,11 +52,11 @@ class Task {
    * 
   */
   
-  public function __construct(string $status, int $id_customer, ?int $id_performer = null)
+  public function __construct(int $id_customer, ?int $id_performer = null)
   {
     $this->id_customer = $id_customer;
     $this->id_performer = $id_performer; 
-    setStatus($status);
+    $this->status = self::STATUS_NEW;
   }
 
   /**
@@ -65,10 +65,22 @@ class Task {
    * @return void 
    */
 
-  private function setStatus(string $status): void  
+  public function setStatus(string $status): void  
   {
-    $this->status = in_array($status, $this->status_array)? $status : "";
+    $this->status = in_array($status, $this->status_array)? array_keys($this->status_array, $status)[0]: "";
+  }
 
+  /**
+   * Устанавливает идентификатор исполнителя
+   * @param int $id идентификатор 
+  */
+
+  public function setPerformerId(int $id)
+  {
+    if(!$this->id_performer)
+    {
+      $this->id_performer = $id;
+    }
   }
 
   /**
@@ -110,7 +122,25 @@ class Task {
 
   public function getNextStatus(string $action): string
   {
-    return array_key_exists($action, $this->action_status_link_array) ? $this->action_status_link_array[$action] : "";
+    try
+    {
+      $new_status = array_key_exists($action, $this->action_status_link_array) ? $this->action_status_link_array[$action] : "";
+      
+      if($new_status)
+      {
+        $this->status = $new_status;
+        return $new_status;
+      }
+      else
+      {
+        throw new Exception("Ваше действие не меняет статус Задачи");
+      }
+    } 
+    catch(Exception $e) 
+    {
+     echo "Статус не был установлен\n<br>", $e->getMessage(), "\n";
+     return "";
+    }
   }
 
 /**
@@ -122,19 +152,19 @@ class Task {
  * @return string/null возвращает доступные действия
  */
 
-  public function getAvalibleActions(string $status, int $id): string
+  public function getAvalibleActions(int $id): string
   {
 
     if($id)
     {
-      if($status === self::STATUS_NEW)
+      if($this->status === self::STATUS_NEW)
       {
-        return ($id === $id_customer) ? self::ACTION_CANCELL : self::ACTION_RESPOND;
+        return ($id === $this->id_customer) ? self::ACTION_CANCELL : self::ACTION_RESPOND;
       }
 
-      if($status === self::STATUS_IN_PROCESS)
+      if($this->status === self::STATUS_IN_PROCESS)
       {
-        return($id === $id_customer) ? self::ACTION_EXECUTE : self::ACTION_REFUSE ;
+        return($id === $this->id_customer) ? self::ACTION_EXECUTE : self::ACTION_REFUSE ;
       } 
     }
 
