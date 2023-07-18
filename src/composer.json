@@ -1,0 +1,26 @@
+{
+    "name": "task-force/src",
+    "description": "for composer testing",
+    "type": "project",
+    "license": "no",
+    "authors": [
+        {
+            "name": "mimi",
+            "email": "mimi@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    
+    "require": {
+        "monolog/monolog": "^3.4"
+    },
+
+    "autoload": {
+        "files": ["logic/utils.php"],
+        "classmap": ["logic"],
+        "psr-4": {
+            "taskforce\\logic\\": "src/logic",
+            "taskforce\\logic\\booling\\": "src/logic"
+        }
+    }
+}
