@@ -7,13 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
 {
     public static $files = array (
-        'c0208a053c46837319e77b5ce852a3ab' => __DIR__ . '/../..' . '/logic/utils.php',
+        'db7ba4da92bc9ea455c8950012a4692a' => __DIR__ . '/../..' . '/logic/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
             'taskforce\\logic\\booling\\' => 24,
+            'taskforce\\logic\\actions\\' => 24,
             'taskforce\\logic\\' => 16,
         ),
         'P' => 
@@ -31,6 +32,10 @@ class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
         array (
             0 => __DIR__ . '/../..' . '/src/logic',
         ),
+        'taskforce\\logic\\actions\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/logic/actions',
+        ),
         'taskforce\\logic\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/logic',
@@ -47,7 +52,12 @@ class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'taskforce\\logic\\Task' => __DIR__ . '/../..' . '/logic/Task.php',
+        'taskforce\\logic\\AvailableActions' => __DIR__ . '/../..' . '/logic/AvailableActions.php',
+        'taskforce\\logic\\actions\\AbstractAction' => __DIR__ . '/../..' . '/logic/actions/AbstractAction.php',
+        'taskforce\\logic\\actions\\CancelAction' => __DIR__ . '/../..' . '/logic/actions/CancelAction.php',
+        'taskforce\\logic\\actions\\CompleteAction' => __DIR__ . '/../..' . '/logic/actions/CompleteAction.php',
+        'taskforce\\logic\\actions\\DenyAction' => __DIR__ . '/../..' . '/logic/actions/DenyAction.php',
+        'taskforce\\logic\\actions\\ResponseAction' => __DIR__ . '/../..' . '/logic/actions/ResponseAction.php',
         'taskforce\\logic\\booling\\Boo' => __DIR__ . '/../..' . '/logic/Boo.php',
     );
 

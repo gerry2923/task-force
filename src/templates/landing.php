@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>TaskForce</title>
+    <title><?= $title?></title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/landing.css">
 </head>
@@ -141,6 +141,7 @@
            </div>
         </div>
     </main>
+
     <footer class="page-footer">
         <div class="main-container page-footer__container">
             <div class="page-footer__info">

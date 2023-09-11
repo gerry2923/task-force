@@ -16,11 +16,12 @@
     },
 
     "autoload": {
-        "files": ["logic/utils.php"],
+        "files": ["logic/helpers.php"],
         "classmap": ["logic"],
         "psr-4": {
             "taskforce\\logic\\": "src/logic",
-            "taskforce\\logic\\booling\\": "src/logic"
+            "taskforce\\logic\\booling\\": "src/logic",
+            "taskforce\\logic\\actions\\": "src/logic/actions"
         }
     }
 }

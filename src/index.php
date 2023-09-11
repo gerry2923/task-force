@@ -19,17 +19,24 @@
 
     ];
 
-    vardump($array);
+    // vardump($array);
     // define('__ROOT__', dirname(__FILE__));
     // ini_set('include_path', __ROOT__.'/logic');
     // ini_set('assert.exception', 1);
     // session_start();
     // require_once __DIR__ . "/vendor/autoload.php";
 
-    use taskforce\logic\Task;
-    use taskforce\logic\booling\Boo;
 
-    echo (new Boo('word HOHOHO'))->getMyWord();
+    use taskforce\logic\AvailableActions;
+    use taskforce\logic\actions\ResponseAction;
+    use taskforce\logic\actions\CancelAction;
+    use taskforce\logic\actions\CompleteAction;
+    use taskforce\logic\actions\DenyAction;
+
+    use taskforce\logic\booling\Boo;
+    use taskforce\logic\actions\AbstractAction;
+
+    // echo (new Boo('word HOHOHO'))->getMyWord();
 
   /*
     function myAutoload($class)
@@ -82,7 +89,28 @@
     echo "а теперь тут";
     assert(false, 'специальная ошибка');
   */
-?>
+
+   /******** */ // $layout_content = include_template("landing.php", [
+    //   "title" => "TaskForce"
+    // ]);
+
+    // print($layout_content);
+
+   /******** */ 
+  
+  try {
+
+    $strategy = new AvailableActions(AvailableActions::STATUS_NEW, 3, 1);
+    $nextStatus = $strategy->getNextStatus(new ResponseAction());
+    echo $nextStatus;
+  } catch (StatusActionException $e) {
+    die($e->getMessage());
+  }
+
+  var_dump($strategy->getAvailableActions(AvailableActions::ROLE_CUSTOMER, 1));
+  ?>
+
+  <h3>Hello people!</h3>
 </body>
 </html>
 

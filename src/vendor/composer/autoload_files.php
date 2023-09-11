@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'c0208a053c46837319e77b5ce852a3ab' => $baseDir . '/logic/utils.php',
+    'db7ba4da92bc9ea455c8950012a4692a' => $baseDir . '/logic/helpers.php',
 );
