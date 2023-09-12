@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'taskforce\\exceptions\\StatusActionException' => $baseDir . '/exceptions/StatusActionException.php',
     'taskforce\\logic\\AvailableActions' => $baseDir . '/logic/AvailableActions.php',
     'taskforce\\logic\\actions\\AbstractAction' => $baseDir . '/logic/actions/AbstractAction.php',
     'taskforce\\logic\\actions\\CancelAction' => $baseDir . '/logic/actions/CancelAction.php',

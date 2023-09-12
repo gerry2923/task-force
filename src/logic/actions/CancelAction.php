@@ -3,12 +3,12 @@ namespace taskforce\logic\actions;
 
 class CancelAction extends AbstractAction
 {
-    public function getLabel()
+    public static function getLabel()
     {
         return "Отменить";
     }
 
-    public function getInternalName()
+    public static function getInternalName()
     {
         return "cancelled";
     }

@@ -16,6 +16,7 @@ class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
             'taskforce\\logic\\booling\\' => 24,
             'taskforce\\logic\\actions\\' => 24,
             'taskforce\\logic\\' => 16,
+            'taskforce\\exceptions\\' => 21,
         ),
         'P' => 
         array (
@@ -40,6 +41,10 @@ class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
         array (
             0 => __DIR__ . '/../..' . '/src/logic',
         ),
+        'taskforce\\exceptions\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/exceptions',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
@@ -52,6 +57,7 @@ class ComposerStaticInit40e6094fe43da3bc1d879a7d64bf810d
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'taskforce\\exceptions\\StatusActionException' => __DIR__ . '/../..' . '/exceptions/StatusActionException.php',
         'taskforce\\logic\\AvailableActions' => __DIR__ . '/../..' . '/logic/AvailableActions.php',
         'taskforce\\logic\\actions\\AbstractAction' => __DIR__ . '/../..' . '/logic/actions/AbstractAction.php',
         'taskforce\\logic\\actions\\CancelAction' => __DIR__ . '/../..' . '/logic/actions/CancelAction.php',

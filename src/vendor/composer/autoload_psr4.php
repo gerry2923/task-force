@@ -9,6 +9,7 @@ return array(
     'taskforce\\logic\\booling\\' => array($baseDir . '/src/logic'),
     'taskforce\\logic\\actions\\' => array($baseDir . '/src/logic/actions'),
     'taskforce\\logic\\' => array($baseDir . '/src/logic'),
+    'taskforce\\exceptions\\' => array($baseDir . '/src/exceptions'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );

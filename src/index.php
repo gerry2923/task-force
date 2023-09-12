@@ -7,7 +7,20 @@
 </head>
 <body>
   <?php
+    use taskforce\logic\AvailableActions;
+    use taskforce\logic\actions\ResponseAction;
+    use taskforce\logic\actions\CancelAction;
+    use taskforce\logic\actions\CompleteAction;
+    use taskforce\logic\actions\DenyAction;
+
+    use taskforce\logic\booling\Boo;
+    use taskforce\logic\actions\AbstractAction;
+    use taskforce\exceptions\StatusActionException;
+
+
     require 'vendor/autoload.php';
+
+    
     error_reporting(E_ALL);
     ini_set('display_errors', 'on');
 
@@ -27,14 +40,7 @@
     // require_once __DIR__ . "/vendor/autoload.php";
 
 
-    use taskforce\logic\AvailableActions;
-    use taskforce\logic\actions\ResponseAction;
-    use taskforce\logic\actions\CancelAction;
-    use taskforce\logic\actions\CompleteAction;
-    use taskforce\logic\actions\DenyAction;
 
-    use taskforce\logic\booling\Boo;
-    use taskforce\logic\actions\AbstractAction;
 
     // echo (new Boo('word HOHOHO'))->getMyWord();
 
@@ -103,11 +109,17 @@
     $strategy = new AvailableActions(AvailableActions::STATUS_NEW, 3, 1);
     $nextStatus = $strategy->getNextStatus(new ResponseAction());
     echo $nextStatus;
+
+    // throw new StatusActionException("This is new class");
+
   } catch (StatusActionException $e) {
     die($e->getMessage());
   }
 
-  var_dump($strategy->getAvailableActions(AvailableActions::ROLE_CUSTOMER, 1));
+  // var_dump($strategy->getAvailableActions(AvailableActions::ROLE_CUSTOMER, 1));
+
+
+  $strategy->setStatus("fkdjfs");
   ?>
 
   <h3>Hello people!</h3>

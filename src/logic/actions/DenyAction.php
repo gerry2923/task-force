@@ -3,12 +3,12 @@ namespace taskforce\logic\actions;
 
 class DenyAction extends AbstractAction
 {
-  public function getLabel()
+  public static function getLabel()
   {
     return "Отказать";
   }
 
-  public function getInternalName() 
+  public static function getInternalName() 
   {
     return "deny";
   }

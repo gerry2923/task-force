@@ -3,12 +3,12 @@ namespace taskforce\logic\actions;
 
 class CompleteAction extends AbstractAction
 {
-  public function getLabel()
+  public static function getLabel()
   {
     return "Завершить";
   }
 
-  public function getInternalName() 
+  public static function getInternalName() 
   {
     return "complete";
   }

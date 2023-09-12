@@ -6,6 +6,8 @@ use taskforce\logic\actions\CancelAction;
 use taskforce\logic\actions\CompleteAction;
 use taskforce\logic\actions\DenyAction;
 
+use taskforce\exceptions\StatusActionException;
+
 
 class AvailableActions {
   // С Т А Т У С Ы
@@ -18,9 +20,9 @@ class AvailableActions {
   const ROLE_CUSTOMER = "customer";
   const ROLE_PERFORMER = "performer";
 
-  private $status = null;
-  private $customerId = null;
-  private $performerId = null;
+  private ?string $status = null;
+  private ?int $customerId = null;
+  private ?int $performerId = null;
   private $finishDate = null;
 
   /** 
@@ -48,9 +50,8 @@ class AvailableActions {
     }
   }
 
-  public function getAvailableActions(string $role, int $id)
-  {
-    $statusActions = $this->statusAllowedActions()[$this->status];
+  public function getAvailableActions(string $role, int $id): array
+  {  $statusActions = $this->statusAllowedActions()[$this->status];
     $roleActions = $this->roleAllowedActions()[$role];
 
     $allowedActions = array_intersect($statusActions, $roleActions);
@@ -64,7 +65,7 @@ class AvailableActions {
     return array_values($allowedActions); // возвращает объект действия
   }
 
-  public function getNextStatus(object $action)
+  public function getNextStatus(object $action): ?string
   {
 
     // $reg_expression = "/([a-zA-Z]+[\\\])+/";
@@ -80,7 +81,7 @@ class AvailableActions {
     return $map[$action::class];
   }
 
-  public function setStatus(string $status)
+  public function setStatus(string $status): void
   {
     $availableStatused = [
       self::STATUS_NEW,
@@ -91,13 +92,15 @@ class AvailableActions {
     ];
 
 
-    if(in_array($status, $availableStatused))
+    if(!in_array($status, $availableStatused))
     {
-      $this->status = $status;
+      throw new StatusActionException("Неизвествный статус $status");
     }
+
+    $this->status = $status;
   }
 
-  private function roleAllowedActions()
+  private function roleAllowedActions(): array
   {
     $map = [
       self::ROLE_CUSTOMER => [CancelAction::class, CompleteAction::class],
@@ -107,7 +110,7 @@ class AvailableActions {
     return $map;
   }
 
-  private function statusAllowedActions()
+  private function statusAllowedActions():array
   {
     $map = [
       self::STATUS_NEW => [CancelAction::class, ResponseAction::class],
@@ -120,7 +123,7 @@ class AvailableActions {
     return $map;
   }
 
-  private function getStatusMap()
+  private function getStatusMap(): array
   {
     $map = [
       self::STATUS_NEW => [self::STATUS_EXPIRED, self::STATUS_CANCEL],
@@ -131,6 +134,17 @@ class AvailableActions {
     ];
 
     return $map;
+  }
+
+  public function checkRole(string $role):void
+  {
+    $availableRoles = [self::ROLE_CUSTOMER, self::ROLE_PERFORMER];
+
+    if(!in_array($role, $availableRoles))
+    {
+      throw new StatusActionException("Неизвестная роль: $role");
+    }
+
   }
 
 }
