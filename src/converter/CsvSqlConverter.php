@@ -52,10 +52,14 @@ class CsvSqlConverter {
     $fileObject = new SplFileObject($file->getRealPath());
     $fileObject->setFlags(SplFileObject::READ_CVS);
 
-    $colums = $fileObject->fgetcsv(); // возвращает массив
+    $colums = $fileObject->fgetcsv(); // возвращает массив из слов строки
+
+
+
+
     $values = [];
 
-    while($fileObject->eof())
+    while($fileObject->eof()) // пока не достигнет конца строки
     {
       $values[] = $fileObject->fgetcsv();
     }
@@ -99,6 +103,21 @@ class CsvSqlConverter {
     return $filename;
   }
 
+  private function columnNameCorrection(array $column) : array
+  {
+    $pattern = "/ies/";
+    $replacement = "y";
+
+
+foreach ($column as &$word)
+{
+	if(preg_match("/(ies)$/", $word))
+	{
+		$word = preg_replace($pattern, $replacement, $word);
+	}
+	
+}
+  }
 }
 
 

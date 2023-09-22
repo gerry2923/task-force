@@ -16,7 +16,8 @@ CREATE TABLE task_force_db.roles (
 CREATE TABLE task_force_db.cities (
   id INt NOT NULL AUTO_INCREMENT PRIMARY KEY,
   city_name VARCHAR(128) NOT NULL,
-  city_coordinates VARCHAR(128) NOT NULL
+  city_lat varchar(128),
+  city_lng varchar(128)
 );
 
 CREATE TABLE task_force_db.users (
